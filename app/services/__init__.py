@@ -1,1 +1,1 @@
-from app.services import rag_service
+from app.services.rag_service import RagService

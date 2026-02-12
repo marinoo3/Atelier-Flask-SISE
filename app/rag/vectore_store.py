@@ -21,14 +21,9 @@ class VectorStore:
         Returns:
             list[Chunk]: List of document chunk
         """
-        
         embeddings = self.vectorizer.generate_embeddings(query)
 
-        with self.document_db.connect() as conn:
-            chunks = self.document_db.get_k_nearest(
-                embeddings, 
-                k=k, 
-                conn=conn
-            )
+        # TODO: retrieve k nearest chunks
+        chunks: list[Chunk] = []
 
         return chunks

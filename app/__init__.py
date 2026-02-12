@@ -1,8 +1,10 @@
 from flask import Flask
 
+from app.services import RagService
+
 
 class AppContext(Flask):
-    pass
+    rag_service: RagService
 
 
 def create_app() -> Flask:
@@ -18,7 +20,7 @@ def create_app() -> Flask:
 
     # Load configuration
     with app.app_context():
-        pass
+        rag_service = RagService()
 
     # Init routes pages
     from app.routes import main as main_blueprint
@@ -27,6 +29,5 @@ def create_app() -> Flask:
     # Init ajax backend
     from app.ajax import ajax as ajax_blueprint
     app.register_blueprint(ajax_blueprint, url_prefix='/ajax')
-
 
     return app
